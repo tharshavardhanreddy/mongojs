@@ -178,7 +178,7 @@ route.post('/userlog',(req,res)=>{
                  
             }
             else{
-                console.log('invalid')
+                console.log('invalid');
             }
         }       
         
@@ -190,16 +190,14 @@ route.post('/jobseekerlogin',(req,res)=>{
     console.log('log details of seeker');
     console.log(req.body);
 
-    registerjobseek.findOne({username: req.body.username},function(err,result){
+    registerjobseek.find({username: req.body.username},function(err,dataa){
         if(err){
             res.json(err);
         } else {
-
-            console.log(result);
-            if(result === null){
+            if(dataa === null){
                 res.json('invalid credentials')
             }
-            else if(result.username == req.body.username && result.password == req.body.password){
+            else if(dataa.username == req.body.username && dataa.password == req.body.password){
                 res.status(200).json({
                     status:'200',
                     message:'sucess'

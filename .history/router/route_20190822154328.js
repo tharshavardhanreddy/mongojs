@@ -4,7 +4,6 @@ var route = express.Router();
 const registerusers = require('./schema/userregistration');
 const jobseeker=require('./schema/jobseeker');
 const companyrequirement= require('./schema/companyjob');
-const registerjobseek = require('./schema/jregister');
 var app = express();
 app.use(parse.json());
 // app.use(mongoose());
@@ -117,7 +116,7 @@ route.post('/registeruser',(req,res)=>{
     name:req.body.Name,
     username: req.body.UserName,
     password: req.body.Password,
-    email: req.body.mailid, 
+    mailid: req.body.mailid, 
     phonenumber: req.body.phonenumber,
    })
  user.save((err,result)=>{
@@ -130,29 +129,6 @@ route.post('/registeruser',(req,res)=>{
            res.json('inserted')
        }
    })    
-})
-
-
-route.post('/resjobseek',(req,res)=>{
-    console.log("request sent");
-    console.log(req.body);
-
-    let resjdata = new registerjobseek ({
-
-    username: req.body.UserName,
-    password: req.body.Password,
-    email: req.body.mailid, 
-    phonenumber: req.body.phonenumber,
-    })
-    resjdata.save((err,result)=>{
-        if(err){
-            res.json(err)
-        }
-        else{
-            console.log("jkaasad")
-            res.json('inserted')
-        }
-    })
 })
 
 
@@ -184,32 +160,6 @@ route.post('/userlog',(req,res)=>{
         
     })
 
-})
-
-route.post('/jobseekerlogin',(req,res)=>{
-    console.log('log details of seeker');
-    console.log(req.body);
-
-    registerjobseek.findOne({username: req.body.username},function(err,result){
-        if(err){
-            res.json(err);
-        } else {
-
-            console.log(result);
-            if(result === null){
-                res.json('invalid credentials')
-            }
-            else if(result.username == req.body.username && result.password == req.body.password){
-                res.status(200).json({
-                    status:'200',
-                    message:'sucess'
-                })
-            }
-            else{
-                console.log('invalid');
-            }
-        }
-    })
 })
 
 

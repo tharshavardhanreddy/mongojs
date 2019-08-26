@@ -117,7 +117,7 @@ route.post('/registeruser',(req,res)=>{
     name:req.body.Name,
     username: req.body.UserName,
     password: req.body.Password,
-    email: req.body.mailid, 
+    mailid: req.body.mailid, 
     phonenumber: req.body.phonenumber,
    })
  user.save((err,result)=>{
@@ -133,7 +133,7 @@ route.post('/registeruser',(req,res)=>{
 })
 
 
-route.post('/resjobseek',(req,res)=>{
+route.post('/registerjobseek',(req,res)=>{
     console.log("request sent");
     console.log(req.body);
 
@@ -141,7 +141,7 @@ route.post('/resjobseek',(req,res)=>{
 
     username: req.body.UserName,
     password: req.body.Password,
-    email: req.body.mailid, 
+    mailid: req.body.mailid, 
     phonenumber: req.body.phonenumber,
     })
     resjdata.save((err,result)=>{
@@ -184,32 +184,6 @@ route.post('/userlog',(req,res)=>{
         
     })
 
-})
-
-route.post('/jobseekerlogin',(req,res)=>{
-    console.log('log details of seeker');
-    console.log(req.body);
-
-    registerjobseek.findOne({username: req.body.username},function(err,result){
-        if(err){
-            res.json(err);
-        } else {
-
-            console.log(result);
-            if(result === null){
-                res.json('invalid credentials')
-            }
-            else if(result.username == req.body.username && result.password == req.body.password){
-                res.status(200).json({
-                    status:'200',
-                    message:'sucess'
-                })
-            }
-            else{
-                console.log('invalid');
-            }
-        }
-    })
 })
 
 

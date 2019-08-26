@@ -190,12 +190,10 @@ route.post('/jobseekerlogin',(req,res)=>{
     console.log('log details of seeker');
     console.log(req.body);
 
-    registerjobseek.findOne({username: req.body.username},function(err,result){
+    registerjobseek.find({ username: req.body.username},function(err,result){
         if(err){
             res.json(err);
         } else {
-
-            console.log(result);
             if(result === null){
                 res.json('invalid credentials')
             }
@@ -206,20 +204,12 @@ route.post('/jobseekerlogin',(req,res)=>{
                 })
             }
             else{
-                console.log('invalid');
+                
+                console.log('invalid')
             }
         }
     })
 })
-
-
-
-
-
-
-
-
-
 
 
 

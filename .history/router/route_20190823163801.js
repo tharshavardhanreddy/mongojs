@@ -194,19 +194,17 @@ route.post('/jobseekerlogin',(req,res)=>{
         if(err){
             res.json(err);
         } else {
-
-            console.log(result);
             if(result === null){
                 res.json('invalid credentials')
             }
             else if(result.username == req.body.username && result.password == req.body.password){
-                res.status(200).json({
+                Response.status(200).json({
                     status:'200',
                     message:'sucess'
                 })
             }
             else{
-                console.log('invalid');
+                console.log('invalid')
             }
         }
     })

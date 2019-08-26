@@ -194,8 +194,6 @@ route.post('/jobseekerlogin',(req,res)=>{
         if(err){
             res.json(err);
         } else {
-
-            console.log(result);
             if(result === null){
                 res.json('invalid credentials')
             }
@@ -206,7 +204,8 @@ route.post('/jobseekerlogin',(req,res)=>{
                 })
             }
             else{
-                console.log('invalid');
+
+                console.log('invalid')
             }
         }
     })
